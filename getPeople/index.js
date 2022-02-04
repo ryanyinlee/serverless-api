@@ -5,7 +5,15 @@ exports.handler = async (event) => {
     
     // console.log(event.pathParameters);
     // console.log(event.queryStringParameters);
-    // let id = event.pathParameters.id;
+    let{ pathParameters, queryStringParameters } = event;
+
+    let id = null;
+
+   if (pathParameters){
+    id = pathParameters.id;
+   } else if (queryStringParameters){
+    id = queryStringParameters.id;
+   }
     
      let peopleSchema = new dynamoose.Schema({
         id: String,
@@ -18,13 +26,11 @@ exports.handler = async (event) => {
 
      let returnRecord = await People.scan().exec();
 
-    //  if (!id) {
-    // returnRecord = await People.scan().exec();
-    //  } else {
-         
-    // // query by id
-    // returnRecord = await People.query('id').eq(id).exec();
-    //  }
+     if (id) {// query by id
+        returnRecord = await People.query('id').eq(id).exec();    
+     } else {         
+        returnRecord = await People.scan().exec();    
+     }
    
 
     const response = {

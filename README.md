@@ -9,13 +9,9 @@ Create a serverless REST API
 
 ## Documentation
 
-Document the data and program flow for your API, including the mapping of Routes and Functions, as well as the flow of data.
+Root URL
 
-What is the root URL to your API?
-
-
-
-
+https://bapo3fa12d.execute-api.us-west-2.amazonaws.com/
 
 ## Feature Tasks & Requirements
 
