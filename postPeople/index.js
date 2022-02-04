@@ -9,20 +9,20 @@ exports.handler = async (event) => {
       let body = JSON.parse(event.body);
 
 
-   //   let peopleSchema = new dynamoose.Schema({
-   //      id: uuid(),
-   //      name: String,
-   //      age: Number,
-   //   });
+     let peopleSchema = new dynamoose.Schema({
+        id: uuid(),
+        name: event.body.name,
+        age: event.body.age,
+     });
     
 
-   //   let People = dynamoose.model('people', peopleSchema);
+     let People = dynamoose.model('people', peopleSchema);
 
   
 
     const response = {
         statusCode: 200,
-        body: JSON.stringify(body),
+        body: JSON.stringify(People),
     };
     return response;
 };
